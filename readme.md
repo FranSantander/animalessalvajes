@@ -1,4 +1,4 @@
-¿Quieres cómo queda la página?
+¿Quieres ver cómo queda la página?
 Entra aquí:  https://fransantander.github.io/animalessalvajes/
 
 Habilidades a evaluar:
@@ -9,7 +9,9 @@ Habilidades a evaluar:
 ● Crear instancias de clases.
 ● Obtener y modificar elementos del DOM.
 
-******La foto del diagrama se encuentra en la carpeta imgs*****
+*La foto del diagrama se encuentra en la carpeta imgs*
+
+
 Requerimientos
 1. Crear las clases representadas en el diagrama implementando la herencia indicada.
 (2 Puntos)
