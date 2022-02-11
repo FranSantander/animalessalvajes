@@ -1,149 +1,110 @@
 //alert ("Hola")
-import { Leon, Lobo, Oso, Serpiente, Aguila } from "./clases/Tipo_animal.js"
+import { Leon, Lobo, Oso, Serpiente, Aguila } from "./Tipo_animal.js"
 
-const instanciaAnimal= (tipoAnimal, edadAnmimal, img, comentario, sonido) =>{
-   switch(tipoAnimal){
-       case "Leon":
-           const leon = new Leon(tipoAnimal, edadAnmimal, img, comentario, sonido)
-           return leon
-        case "Lobo":
-            const lobo = new Lobo(tipoAnimal, edadAnmimal, img, comentario, sonido)
-            return lobo
-        case "Oso":
-            const oso = new Oso(tipoAnimal, edadAnmimal, img, comentario, sonido)
-            return oso
-        case "Serpiente":
-            const serpiente = new Serpiente(tipoAnimal, edadAnmimal, img, comentario, sonido)
-            return serpiente
-        case "Aguila":
-            const aguila = new Aguila(tipoAnimal, edadAnmimal, img, comentario, sonido)
-            return aguila
-   } 
-}
+import {animalitos} from "./Animal.js";
 
-const registroAnimal = (animal, animalesFormulario, animales) => {
-    animales.push(animal)
-    verAnimales(animales, animalesFormulario)
-}
- const verAnimales = (animales, animalesFormulario) => {
-     animales.forEach(() => {
-         animalesFormulario.innerHTML = ""
-         animales.forEach((animal) => {
-            animalesFormulario.innerHTML+= `
-            <div class="col-4">
-            <div class="card" style="">
-            <img src="${animal.Img()}" class="card-img-top" a
-                data-comentarios = "${animal.Comentarios()}"
-                data-edad = "${animal.Edad()}"
-                data-toggle="modal" 
-                data-target="#exampleModal"
-            >
-            <div class="bg-secondary" id="botonSonido">
-            <img src="./assets/imgs/audio.svg" style="width:17.5% ; padding:5px ; margin:0"
-            data-sonido= "${animal.Sonido()}"
-            >
-            </div>
-            </div>
-            </div>
-            `
-         })
-     })
-     let imgAnimales = document.querySelectorAll('#Animales img')
-     const modal = document.querySelector('.modal-body')
+let animales = [];
 
-     imgAnimales.forEach((imagenAnimal) => {
-         imagenAnimal.addEventListener("click", () =>{
-             modal.innerHTML= `
-             <img src="${imagenAnimal.src}" class="card-img-top mb-3">
-            <h5 class= "text-center text-light">${imagenAnimal.dataset.edad}</h5>
-            <h5 class= "text-center text-light">Comentarios</h5>
-            <p class= "text-center text-light">${imagenAnimal.dataset.comentarios}</p>
-             `
-         })
-     })
-     const sonidoAnimales = document.querySelectorAll('#botonSonido img')
-     sonidoAnimales.forEach((sonidoAnimal) => {
-         sonidoAnimal.addEventListener("click", () => {
-             const audio = new Audio(`${sonidoAnimal.dataset.sonido}`)
-             audio.play()
-         })
-     })
+let img = document.getElementById('preview');
+let audio = document.getElementById('player');
+const registrarAnimal = document.getElementById('btnRegistrar');
+let nombre = document.getElementById('animal');
 
- }
+//Evento Escucha para tomar que tipo de animal es 
+registrarAnimal.addEventListener('click', async () => {
+    let edad = document.getElementById('edad');
+    let comentario = document.getElementById('comentarios')
+    let animal;
 
- const limpiezaFormulario = () => {
-     const formDesplegable = document.querySelectorAll('.form-group select')
-     formDesplegable.forEach((despliegue) => despliegue.selectedIndex = '0')
-    const formTexto = document.querySelector('.form-group textarea') 
-    formTexto.value = ''
-    const formImagen = document.getElementById('preview')
-    formImagen.style.backgroundImage = `${url}./assets/imgs/lion.svg`
- }
-
-
-
- export {instanciaAnimal, registroAnimal, limpiezaFormulario}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*let animales = [];
-
-document.getElementById("btnRegistrar").addEventListener("click", () => {
-
-    let animal = document.getElementById("animal");
-    let edad = document.getElementById("edad");
-    let comentarios = document.getElementById("comentarios")
-    let previewElement = document.getElementById("preview");
-    //let imagenSrcBg = previewElement.style.backgroundImage;
-    //let imgSrc = imagenSrcBg.slice(5, imagenSrcBg.length - 2);
-    
-
-    let nuevoAnimal;
-
-    if (animal.value == "Leon") {
-        nuevoAnimal = new Leon(
-            edad.value,
-            comentarios.value,
-            animal.value);
-    } else if (animal.value == "Humano") {
-        nuevoParticipante = new Humano(edad.value,comentarios.value,animal.value);
-    }
-
-    if(raza.value && nombre.value && ki.value && imagenSrcBg){
-    participantes.push(nuevoParticipante);
-    nombre.selectedIndex = 0;
-    raza.selectedIndex = 0;
-    previewElement.style.backgroundImage = "none";
-    imagenSrcBg = previewElement.style.backgroundColor = "#f0f0f0";
-    ki.value = "";
-    reloadTable();
+    if (nombre.value && edad.value && comentario.value) {
+        let datos = await animalitos.mostrar;
+        
+        if (nombre.value == 'Leon') {
+            animal = new Leon(nombre.value, edad.value, datos.animales[0].imagen, comentario.value, datos.animales[0].sonido);
+        } else if (nombre.value == 'Lobo') {
+            animal = new Lobo(nombre.value, edad.value, datos.animales[1].imagen, comentario.value, datos.animales[1].sonido);
+        } else if (nombre.value == 'Oso') {
+            animal = new Oso(nombre.value, edad.value, datos.animales[2].imagen, comentario.value, datos.animales[2].sonido);
+        } else if (nombre.value == 'Serpiente') {
+            animal = new Serpiente(nombre.value, edad.value, datos.animales[3].imagen, comentario.value, datos.animales[3].sonido);
+        } else if (nombre.value == 'Aguila') {
+            animal = new Aguila(nombre.value, edad.value, datos.animales[4].imagen, comentario.value, datos.animales[4].sonido)
+        }
+        nombre.selectedIndex = 0;
+        edad.selectedIndex = 0;
+        comentario.value = ""
+        img.innerHTML = `<img src="">`
+        animales.push(animal)
+        mostrarTabla();
     } else {
-        alert("Faltan datos por llenar");
+        alert("Por favor ingrese todos los datos");
     }
-})*/
+});
+
+//Evento escucha para la imagen 
+document.getElementById('animal').addEventListener('change', function cambiarImg() {
+    let nombre = document.getElementById('animal')
+    if (nombre.value == 'Leon') {
+        img.innerHTML = `<img src="assets/imgs/Leon.png" alt="imagen leon" class="img-fluid" style="height:100%; width: 100%">`
+    } else if (nombre.value == 'Lobo') {
+        img.innerHTML = `<img src="assets/imgs/Lobo.jpg" alt="imagen lobo" class="img-fluid" style="height:100%; width: 100%">`
+    } else if (nombre.value == 'Oso') {
+        img.innerHTML = `<img src="assets/imgs/Oso.jpg" alt="imagen Oso" class="img-fluid"  style="height:100%">`
+    } else if (nombre.value == 'Serpiente') {
+        img.innerHTML = `<img src="assets/imgs/Serpiente.jpg" alt="imagen Serpiente" class="img-fluid" style="height:100%">`
+    } else if (nombre.value == 'Aguila') {
+        img.innerHTML = `<img src="assets/imgs/Aguila.png" alt="Aguila" class="rounded float-start" style="height:100%; width: 100%">`
+    }
+})
+
+//
+const mostrarTabla = () => {
+    let animalesTemplate = document.getElementById('Animales');
+    animalesTemplate.innerHTML = "";
+
+    animales.forEach((animal, index) => {
+        animalesTemplate.innerHTML+= `
+        <div class="m-2">
+        <div data-fighter="${animal.getNombre()}">
+        <div>
+        <div class="" style="width: 10rem;">
+        <img src="assets/imgs/${animal.getImg()}" alt="imagen animal" width="100%" height="200" onclick="verDatos(${index})" data-toggle="modal" data-target="#datos" />
+        <div class="py-1" style="background-color: grey;">
+        <div class="m-1" id="audio" onclick="sonido(${index})"></div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>`
+    })
+};
+
+//Salida del audio
+window.sonido = (entry) => {
+    let animal = animales[entry];
+    let sonido = animal.getSonido();
+    audio.src = `assets/sounds/${sonido}`;
+    audio.play();
+
+
+//Modal
+window.verDatos = (entry) => {
+    let datos = animales[entry];
+    let modal = document.getElementById('datosAnimal');
+    
+    modal.innerHTML = `
+    <div>
+    <div>
+    <img src="assets/imgs/${datos.getImg()}" width="100%" height="400" />
+    </div>
+    <div class="text-center mt-2">
+    <p class="text-white">Edad: ${datos.getEdad()}</p>
+    </div>
+    <div class="text-center mt-2 text-white">
+    <p>Comentarios:</p>
+    <p>${datos.getComentario()}</p>
+    </div>
+    </div>`
+}
+
+}

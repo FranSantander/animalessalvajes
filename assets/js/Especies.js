@@ -1,4 +1,5 @@
 //Función constructora 
+
 export default class Especies {
     constructor(nombre, edad, img, comentario, sonido) {
         let _nombre = nombre;
@@ -11,28 +12,29 @@ export default class Especies {
         this.getEdad = () => _edad;
         this.getImg = () => _img;
         this.getComentario = () => _comentario;
+        this.setComentario = (nuevo_comentario) => _comentario = nuevo_comentario
         this.getSonido = () => _sonido;
 
     }
 
     //Métodos get y set
-    get Nombre() {
-        return this.getNombre
+    get nombre() {
+        return this.getNombre();
     }
-    get Edad() {
-        return this.getEdad
+    get edad() {
+        return this.getEdad();
     }
-    get Img() {
-        return this.getImg
+    get img() {
+        return this.getImg();
     }
-    get Comentario() {
-        return this.getComentario
+    get comentario() {
+        return this.getComentario();
     }
-    get Sonido() {
-        return this.getSonido
+    get sonido() {
+        return this.getSonido();
     }
-    set Comentario(nuevo_comentario) {
-        comentario = nuevo_comentario
+    set comentario(nuevo_comentario) {
+        this.setComentario(nuevo_comentario)
     }
 
 }
