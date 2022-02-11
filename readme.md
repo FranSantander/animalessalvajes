@@ -1,4 +1,7 @@
-Habilidades a evaluar
+¿Quieres cómo queda la página?
+Entra aquí:  https://fransantander.github.io/animalessalvajes/
+
+Habilidades a evaluar:
 ● Crear clases con herencias.
 ● Exportar e importar módulos.
 ● Crear funciones autoejecutables IIFE.
@@ -6,6 +9,7 @@ Habilidades a evaluar
 ● Crear instancias de clases.
 ● Obtener y modificar elementos del DOM.
 
+******La foto del diagrama se encuentra en la carpeta imgs*****
 Requerimientos
 1. Crear las clases representadas en el diagrama implementando la herencia indicada.
 (2 Puntos)
@@ -34,5 +38,3 @@ importaciones/exportaciones de ES6.
 situaciones con las que te encontrarás en el desarrollo de esta prueba.
 ● Mantén un código ordenado y declarativo.
 ● Utilizar la etiqueta “audio” de HTML
-
-La foto del diagrama se encuentra en la carpeta imgs
